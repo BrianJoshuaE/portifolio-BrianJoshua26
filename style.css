@@ -19,7 +19,7 @@ header {
     top: 0;
     z-index: 1000;
 }
-
+    body {
 nav ul {
     display: flex;
     justify-content: center;
@@ -34,6 +34,34 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: 700;
+     :root {
+       --bg: #0f1724;
+       --surface: rgba(255, 255, 255, 0.04);
+       --muted: rgba(255, 255, 255, 0.7);
+       --accent: #7c5cff;
+       --accent-2: #00d4ff;
+       --glass-border: rgba(255, 255, 255, 0.08);
+       --radius: 14px;
+       --container: 1100px;
+       --transition: 320ms cubic-bezier(.2, .9, .3, 1);
+     }
+
+     * {
+       box-sizing: border-box;
+     }
+     html, body {
+       height: 100%;
+     }
+     body {
+       margin: 0;
+       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+       background: linear-gradient(180deg, #061226 0%, #07152a 100%);
+       color: #e6eef8;
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+       line-height: 1.45;
+     }
+
     padding: 10px 18px;
     border-radius: 999px;
     background: rgba(255,255,255,0.08);
@@ -56,6 +84,51 @@ nav ul li a.active {
     background: mediumturquoise;
     box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
+
+    .glass {
+       background: var(--surface);
+       border: 1px solid var(--glass-border);
+       backdrop-filter: blur(8px) saturate(120%);
+       border-radius: var(--radius);
+     }
+
+    .nav {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       padding: 18px 20px;
+       margin: 20px;
+     }
+
+    .nav .logo {
+       font-weight: 700;
+       color: var(--accent);
+       text-decoration: none;
+       font-size: 1.05rem;
+     }
+
+    .nav-links {
+       display: flex;
+       gap: 14px;
+       list-style: none;
+       margin: 0;
+       padding: 0;
+       align-items: center;
+     }
+
+    .nav-links a {
+       color: var(--muted);
+       text-decoration: none;
+       padding: 8px 12px;
+       border-radius: 10px;
+       transition: var(--transition);
+     }
+
+    .nav-links a:hover {
+       transform: scale(1.05);
+       box-shadow: 0 6px 24px rgba(124, 92, 255, 0.12);
+       color: #fff;
+     }
 
 nav ul li a:focus-visible {
     outline: 3px solid rgba(255,255,255,0.5);
