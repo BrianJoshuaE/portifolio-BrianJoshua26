@@ -26,16 +26,23 @@ const setActiveLink = () => {
     });
 };
 
-// Entrance animation: reveal sections on initial load with a gentle stagger.
-const animatedSections = document.querySelectorAll('main .section');
-const revealSections = () => {
-    animatedSections.forEach((section, index) => {
-        setTimeout(() => section.classList.add('visible'), index * 120 + 100);
+// Entrance animation: reveal sections when they scroll into view.
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
     });
-};
+}, {
+    root: null,
+    threshold: 0.18,
+    rootMargin: '0px 0px -10% 0px'
+});
+
+document.querySelectorAll('main .section').forEach(section => {
+    revealObserver.observe(section);
+});
 
 window.addEventListener('scroll', setActiveLink, { passive: true });
-window.addEventListener('load', () => {
-    revealSections();
-    setActiveLink();
-});
+window.addEventListener('load', setActiveLink);
