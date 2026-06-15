@@ -25,5 +25,17 @@ const setActiveLink = () => {
         }
     });
 };
+
+// Entrance animation: reveal sections on initial load with a gentle stagger.
+const animatedSections = document.querySelectorAll('main .section');
+const revealSections = () => {
+    animatedSections.forEach((section, index) => {
+        setTimeout(() => section.classList.add('visible'), index * 120 + 100);
+    });
+};
+
 window.addEventListener('scroll', setActiveLink, { passive: true });
-window.addEventListener('load', setActiveLink);
+window.addEventListener('load', () => {
+    revealSections();
+    setActiveLink();
+});

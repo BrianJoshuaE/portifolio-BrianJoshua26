@@ -105,6 +105,14 @@ select {
 
 .section {
     padding: clamp(80px, 6vw, 120px) 0;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: none;
 }
 
 .section-heading {
