@@ -97,10 +97,15 @@ select {
 }
 
 .nav-list a:hover,
-.nav-list a:focus-visible {
+.nav-list a:focus-visible,
+.nav-list a.active {
     color: var(--text);
     background: rgba(165, 180, 252, 0.18);
     transform: translateY(-1px);
+}
+
+.nav-list a.active {
+    font-weight: 700;
 }
 
 .section {
