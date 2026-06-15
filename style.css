@@ -20,6 +20,39 @@ header {
     z-index: 1000;
 }
 
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header nav h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: mediumturquoise;
+    text-decoration: underline;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
