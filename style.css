@@ -202,15 +202,16 @@ small,
     margin: 28px 0;
     max-width: 560px;
     font-size: 1.05rem;
+    overflow-wrap: break-word;
 }
 
 .typewriter {
     display: inline-block;
     min-height: 1.7em;
-    white-space: nowrap;
-    overflow: hidden;
     border-right: 2px solid var(--text);
     animation: blink-caret 0.8s step-end infinite;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 @keyframes blink-caret {
