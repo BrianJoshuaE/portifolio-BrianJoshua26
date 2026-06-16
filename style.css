@@ -209,12 +209,24 @@ small,
 }
 
 .typewriter {
-    display: inline;
+    display: inline-block;
+    max-width: 100%;
     min-height: 1.7em;
     border-right: 2px solid var(--text);
     animation: blink-caret 0.8s step-end infinite;
     overflow-wrap: break-word;
     white-space: normal;
+}
+
+.typewriter-line {
+    display: inline;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.typewriter br {
+    display: block;
+    line-height: 1.5;
 }
 
 @keyframes blink-caret {

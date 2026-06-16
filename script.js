@@ -14,42 +14,58 @@ navLinks.forEach(link => {
 // Typewriter introduction for the hero statement.
 const heroTypewriter = document.getElementById('hero-typewriter');
 const heroLines = [
-    'IT Student and Water Engineer crafting clean digital experiences with thoughtful UI, subtle motion, and a calm visual palette.'
+    'IT Student and Water Engineer crafting clean digital experiences with thoughtful UI, subtle motion,',
+    'and a calm visual palette.'
 ];
 let lineIndex = 0;
 let charIndex = 0;
-let typingForward = true;
+let isTyping = true;
+let lineSpans = [];
 
 const typewriterLoop = () => {
     const currentLine = heroLines[lineIndex];
 
-    if (typingForward) {
-        heroTypewriter.textContent = currentLine.slice(0, charIndex + 1);
+    if (isTyping) {
+        lineSpans[lineIndex].textContent = currentLine.slice(0, charIndex + 1);
         charIndex += 1;
 
         if (charIndex === currentLine.length) {
-            typingForward = false;
-            setTimeout(typewriterLoop, 1800);
-            return;
+            charIndex = 0;
+            lineIndex += 1;
+
+            if (lineIndex === heroLines.length) {
+                isTyping = false;
+                setTimeout(typewriterLoop, 1800);
+                return;
+            }
         }
     } else {
-        heroTypewriter.textContent = currentLine.slice(0, charIndex - 1);
+        if (lineIndex > 0) {
+            lineIndex -= 1;
+            charIndex = heroLines[lineIndex].length;
+        }
+
+        lineSpans[lineIndex].textContent = heroLines[lineIndex].slice(0, charIndex - 1);
         charIndex -= 1;
 
-        if (charIndex === 0) {
-            typingForward = true;
+        if (lineIndex === 0 && charIndex === 0) {
+            lineSpans.forEach(span => (span.textContent = ''));
+            isTyping = true;
+            lineIndex = 0;
             setTimeout(typewriterLoop, 600);
             return;
         }
     }
 
-    setTimeout(typewriterLoop, typingForward ? 60 : 30);
+    setTimeout(typewriterLoop, isTyping ? 50 : 35);
 };
 
 window.addEventListener('load', () => {
-    if (heroTypewriter) {
-        typewriterLoop();
-    }
+    if (!heroTypewriter) return;
+
+    heroTypewriter.innerHTML = '<span class="typewriter-line"></span><br><span class="typewriter-line"></span>';
+    lineSpans = Array.from(heroTypewriter.querySelectorAll('.typewriter-line'));
+    typewriterLoop();
 });
 
 // Simple active link styling based on scroll position.
