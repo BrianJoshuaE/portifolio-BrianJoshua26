@@ -204,6 +204,20 @@ small,
     font-size: 1.05rem;
 }
 
+.typewriter {
+    display: inline-block;
+    min-height: 1.7em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text);
+    animation: blink-caret 0.8s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--text); }
+}
+
 .hero-actions {
     display: flex;
     flex-wrap: wrap;

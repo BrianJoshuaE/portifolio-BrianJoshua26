@@ -11,6 +11,47 @@ navLinks.forEach(link => {
     });
 });
 
+// Typewriter introduction for the hero statement.
+const heroTypewriter = document.getElementById('hero-typewriter');
+const heroLines = [
+    'IT Student and Water Engineer crafting clean digital experiences with thoughtful UI, subtle motion, and a calm visual palette.'
+];
+let lineIndex = 0;
+let charIndex = 0;
+let typingForward = true;
+
+const typewriterLoop = () => {
+    const currentLine = heroLines[lineIndex];
+
+    if (typingForward) {
+        heroTypewriter.textContent = currentLine.slice(0, charIndex + 1);
+        charIndex += 1;
+
+        if (charIndex === currentLine.length) {
+            typingForward = false;
+            setTimeout(typewriterLoop, 1800);
+            return;
+        }
+    } else {
+        heroTypewriter.textContent = currentLine.slice(0, charIndex - 1);
+        charIndex -= 1;
+
+        if (charIndex === 0) {
+            typingForward = true;
+            setTimeout(typewriterLoop, 600);
+            return;
+        }
+    }
+
+    setTimeout(typewriterLoop, typingForward ? 60 : 30);
+};
+
+window.addEventListener('load', () => {
+    if (heroTypewriter) {
+        typewriterLoop();
+    }
+});
+
 // Simple active link styling based on scroll position.
 const sections = document.querySelectorAll('main section[id]');
 const setActiveLink = () => {
